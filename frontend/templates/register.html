@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Cadastro</title>
+  <link rel="stylesheet" href="/static/style.css" />
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: rgb(17, 71, 151);
+      font-family: Arial, sans-serif;
+    }
+
+    .register-container {
+      background-color: #fff;
+      padding: 40px 30px;
+      border-radius: 16px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 400px;
+      box-sizing: border-box;
+    }
+
+    .register-container h2 {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .register-container input {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 20px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+      box-sizing: border-box;
+    }
+
+    .register-container button {
+      width: 100%;
+      padding: 12px;
+      background-color: #0d77f0;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .register-container button:hover {
+      background-color: #075ec9;
+    }
+
+    .login-link {
+      text-align: center;
+      margin-top: 15px;
+    }
+
+    .login-link a {
+      color: #0d77f0;
+      text-decoration: none;
+    }
+
+    .login-link a:hover {
+      text-decoration: underline;
+    }
+
+    #message {
+      margin-bottom: 20px;
+      text-align: center;
+      font-weight: bold;
+      color: red;
+    }
+
+    #message.success {
+      color: green;
+    }
+  </style>
+</head>
+<body>
+  <div class="register-container">
+    <h2>Cadastro</h2>
+    <div id="message"></div>
+    <form id="registerForm">
+      <input type="text" name="name" placeholder="Nome" required />
+      <input type="email" name="email" placeholder="E-mail" required />
+      <input type="password" name="password" placeholder="Senha" required minlength="6" />
+      <button type="submit">Cadastrar</button>
+    </form>
+    <div class="login-link">
+      Já tem conta? <a href="/login">Entrar</a>
+    </div>
+  </div>
+
+  <script>
+    const form = document.getElementById("registerForm");
+    const messageDiv = document.getElementById("message");
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      messageDiv.textContent = "";
+      messageDiv.classList.remove("success");
+
+      const formData = new FormData(form);
+      const data = {
+        name: formData.get("name"),
+        email: formData.get("email"),
+        password: formData.get("password"),
+      };
+
+      try {
+        const response = await fetch("/register", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(data),
+        });
+
+        if (response.ok) {
+          messageDiv.textContent = "Cadastro concluído com sucesso! Redirecionando...";
+          messageDiv.classList.add("success");
+          setTimeout(() => {
+            window.location.href = "/home";
+          }, 1500);
+        } else {
+          const errorData = await response.json();
+          messageDiv.textContent = errorData.detail || "Erro ao cadastrar.";
+        }
+      } catch (error) {
+        messageDiv.textContent = "Erro de conexão. Tente novamente.";
+      }
+    });
+  </script>
+</body>
+</html>

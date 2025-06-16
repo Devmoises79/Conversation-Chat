@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Página Inicial</title>
+  <link rel="stylesheet" href="/static/style.css" />
+  <style>
+    body {
+      background-color: #f5f5f5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    .container {
+      background-color: white;
+      padding: 40px;
+      border-radius: 16px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+
+    .container h1 {
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    .chat-btn {
+      padding: 12px 24px;
+      font-size: 16px;
+      background-color: #0d77f0;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      text-decoration: none;
+    }
+
+    .chat-btn:hover {
+      background-color: #075ec9;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+  <div id="successMessage" style="display: none;">
+    <h1 style="color: green;">Cadastro realizado com sucesso!</h1>
+  </div>
+
+  <a href="/chat" class="chat-btn">Ir para o Chat</a>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get("registered") === "1") {
+      document.getElementById("successMessage").style.display = "block";
+    }
+  });
+</script>
+
+
+</body>
+</html>
