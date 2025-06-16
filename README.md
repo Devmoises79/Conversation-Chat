@@ -114,10 +114,8 @@ http://127.0.0.1:8000
 │   ├── models.py
 │   ├── database.py
 │   └── ...
-├── static/
-│   └── style.css
 ├── templates/
-│   └── chat.html
+│   └── chat.html...
 └── README.md
 ```
 
