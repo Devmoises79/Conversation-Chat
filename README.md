@@ -45,13 +45,6 @@
 
 - Botão de logout funcional que limpa os dados da sessão local (LocalStorage)
 
-📝 README.md 
-```markdown
-
-# 💬 Projeto Chat em Tempo Real
-
-Este é um projeto de **chat em tempo real** desenvolvido com FastAPI no backend e HTML/CSS/JS no frontend. Ele permite que usuários se registrem, façam login e conversem de forma instantânea através de WebSockets.
-```
 
 ## 🚀 Funcionalidades
 
