@@ -72,7 +72,7 @@
 
 1. Clone o repositório:
    ```bash
-   git clone https://github.com/Devmoises79/Conversation-Chat/edit/main/README.md
+   git clone https://github.com/Devmoises79/Conversation-Chat/
    cd Conversation-Chat
    ```
 - Crie um ambiente virtual e ative:
